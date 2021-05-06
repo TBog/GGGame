@@ -1,0 +1,25 @@
+body {
+	background: gray;
+	color: lightgray;
+}
+a:link {
+	color: white;
+	text-decoration: overline underline;
+}
+a:visited {
+	color: yellow;
+	text-decoration: overline underline;
+}
+.title {
+	text-align: center;
+	color: #ff0000;
+	font-size: 20px;
+	font-weight: 900;
+}
+.subtitle {
+	color: white;
+	font-size: 17px;
+}
+.debug {
+	color: #0000ff;
+}

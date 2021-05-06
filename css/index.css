@@ -1,0 +1,440 @@
+#loading {
+	background: black;
+	padding: 20px;
+	display: block;
+	position: absolute;    
+	left: 50%;
+	margin-left: -60px;
+	top: 25%;
+	width: 120px;
+	height: 87px;
+	z-index: 4;
+}
+body {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	color: #FFD700;
+	font-size: 17px;
+	text-align: center;
+	background: black url('../img/start_bg.jpg') repeat fixed center;
+}
+* html body { /* only in IE */
+/* bug in IE6, any position:absolute will behave like fixed */
+	height: 100%;
+	overflow-y: auto;
+}
+#page_body {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	text-align:left;
+	/*background-color: #808080;*/
+	margin-left: auto;
+	margin-right: auto;
+	width: 900px;
+	min-height:500px;
+	height:auto !important;
+	height:500px;
+}
+#logo {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background: black;
+}
+a:link {
+	color: white;
+	text-decoration: overline underline;
+}
+a:visited {
+	color: yellow;
+	text-decoration: overline underline;
+}
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+#autowarp{
+	font-weight: 900;
+}
+#resources{
+	display: inline;
+}
+#minimap , #menuright{
+	padding: 0px;
+	display: inline;
+	margin: 5px 0px 5px 0px;
+	border: 1px solid #ffd700;
+	float: right;
+	clear: right;
+	width: 250px;
+}
+input, textarea {
+	padding: 1px 2px 1px 1px;
+	color:#800000;
+	font-size:15px;
+	font-weight:bold;
+	background-color:#ddd;
+	border:1px solid;
+	border-top-color:#ee3300;
+	border-left-color:#ee3300;
+	border-right-color:#772200;
+	border-bottom-color:#772200;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#ffffffff',EndColorStr='#99ffd700');
+}
+textarea.message, input.msgsubject, input.msgto, #autowarptxt, #planetnametxt{
+	background-color: black;
+	color: #ffd700;
+	font-weight: normal;
+	border-color:#772200;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#cc808080',EndColorStr='#00808080');
+}
+input[disabled] {
+	color: #808080;
+	border-color:#2a2a2a;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#00ffffff',EndColorStr='#00ffd700');
+}
+#details{
+	/*background: #aa0000;*/
+	margin: 0px;
+	padding: 0px;
+	padding-top: 10px;
+	float: left;
+	width: 445px;
+}
+#programmer {
+	font-family: 'Times New Roman', serif;
+	padding: 2px 2px 2px 4px;
+	background: black;
+	border: 0px solid #800000;
+	color: #800000;
+	font-size: 11px;
+	position: fixed;
+	position: expression("absolute"); /*position will be absolute only in IE, but it will behave like fixed*/
+	right: 20px;
+	bottom: 10px;
+	z-index: 3;
+}
+.login_error {
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	background-color: #ccffff;
+	color: #ff0000;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#menu, #menuright, input.menu, input.menuright{
+	background-color: #2a2a2a;
+	text-align: center;
+}
+input.menu {
+	margin: 5px 0px -2px 0px;
+}
+input.menuright {
+	margin: 5px 0px 5px 0px;
+}
+#menuright {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+#menu {
+	width: 170px;
+	padding: 5px;
+	padding-bottom: 10px;
+	margin: 5px 5px 5px 0px;
+	float: left;
+	clear: left;
+}
+.menu_title {
+	padding-top: 16px;
+	margin-bottom: 0px;
+	color: #ffd700;
+	font-size: 18px;
+	text-decoration: overline underline;
+	font-weight: bold;
+	text-align: center;
+}
+#menu_details {
+	text-align: left;
+}
+input.menu, input.menuright {
+	font-size: 15px;
+	/*background-color:#333333;*/
+	color:#90d090;
+	width: 150px;
+	font-weight: normal;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#cc808080',EndColorStr='#00444444');
+}
+.autowarpbutton, .planetaction, .shipaction, .popupbutton, .Xbutton, .msgbutton, .warpbutton, .minebutton, .buybutton {
+	background-color: black;
+	color: #FFD700;
+	margin-top: 5px;
+	font-size: 15px;
+	padding: 0px;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#cc808080',EndColorStr='#00808080');
+}
+.buybutton, .planetaction {
+	margin: 1px;
+}
+.Xbutton {
+	float: right;
+}
+.planettext {
+	background-color: black;
+	color: #ffd700;
+	font-weight: normal;
+	border-color:#772200;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#cc808080',EndColorStr='#00808080');
+}
+.Xbutton  {
+	/* this is to make the button margin to 5px on top and at right (look at #popup padding) */
+	margin-top: -5px;
+	margin-right: -10px;
+	margin-left: +10px; /* this is to fix overlapping buttons if there are more then one */
+}
+.popupbutton, .Xbutton {
+	/* this is to repair transparency of buttons in IE */
+	filter:alpha(opacity=90);
+	-moz-opacity: 0.9;
+	-khtml-opacity: 0.9;
+	opacity: 0.9;
+}
+.msgbutton { /* this is because these buttons do not have space between them */
+	margin-right: +5px;
+}
+#autowarptxt {
+	width: 20px;
+}
+b {
+	color: #ee3300;
+	font-weight: bold;
+}
+i, em {
+	color: #808080;
+	font-style: italic;
+}
+i{
+	font-size: 12px;
+}
+i.message {
+	font-size: 14px;
+}
+em, s {
+	border-bottom: 1px dashed #808080;
+}
+s {
+	color: #808080;
+	font-style: normal;
+	font-size: 13px;
+	text-decoration: none;
+}
+img.planetimage {
+	float: right;
+	clear: right;
+	margin: 5px;
+}
+.shiplist {
+	border-left: 1px solid #ee3300;
+	padding-left: 4px;
+	margin-left: 3px;
+	display: none;
+}
+table {
+	border-collapse: collapse;
+}
+table.expandlist {
+	padding: 0px;
+	margin: 0px;
+}
+td.expandbutton {
+	vertical-align: top;
+	padding: 4px 2px 0px 0px;
+	margin: 0px;
+}
+.expand, .collapse {
+	margin: 0px;
+	border: 0px solid;
+	padding: 0px;
+	width: 13px;
+	height: 13px;
+	background: #ffd700 url(../img/expand.png) no-repeat center center;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#00808080',EndColorStr='#00808080');
+}
+.collapse {
+	background-image: url(../img/collapse.png);
+}
+table.shop, table.message, table.menutooltip, table.about, table.planet, table.planet_colonists {
+	border: 0px solid black;
+}
+table.planet, table.planet_colonists {
+	margin: 10px 0px 10px 0px;
+}
+table.planet_colonists {
+	float: right;
+	clear: right;
+}
+table.menutooltip {
+	margin: 15px;
+	width: 90%;
+	height: 150%;
+	margin-left: auto;
+	margin-right: auto;
+}
+th.menutooltip {
+	text-align: center;
+	width: 66%;
+}
+td.planetresources {
+	text-align: left;
+	padding: 0px 10px 0px 0px;
+	border: 0px solid black;
+}
+th.shop, td.shop, th.message, td.message, th.menutooltip, td.menutooltip, th.about, td.about, td.planet, th.planet_colonists, td.planet_colonists {
+	text-align: left;
+	padding: 1px 7px 1px 7px;
+}
+th.shop, td.shop {
+	border: 2px solid black;
+}
+th.about {
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	background-color: #ccffff;
+	color: black;
+}
+th.shop {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: bold;
+	background-color: #808080;
+}
+td.shop {
+	background-color: #2a2a2a;
+	font-weight: normal;
+}
+th.message, td.message, th.menutooltip, td.menutooltip, td.planet, th.planet_colonists, td.planet_colonists {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+th.message, th.menutooltip, th.planet_colonists {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: bold;
+	border-right: 1px solid #808080;
+	vertical-align: top;
+}
+td.message, td.menutooltip, td.planet_colonists {
+	font-weight: normal;
+	text-align: left;
+	border-left: 1px solid #808080;
+}
+th.menutooltip, td.menutooltip {
+	color: #ffd700;
+}
+td.msglist {
+	padding-left:6px;
+}
+th.planet, td.planet {
+	border-left: 0px;
+	border-right: 0px;
+}
+td.planet_colonists, th.planet_colonists {
+	border-top: 0px;
+	font-weight: normal;
+	text-decoration: none;
+}
+th.planet {
+	border-top: 0px;
+	text-align: center;
+	font-weight: normal;
+	text-decoration: none;
+}
+span.newmsgsubject {
+	background-color: #2a2a2a;
+}
+span.msgsubject {
+	background-color: black;
+}
+div.msglist {
+	display: none;
+}
+div.newmsglist {
+	display: block;
+}
+.transparent  {  
+	filter:alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+}
+.opaque {
+	filter:alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+#tooltip {
+	filter:alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+	position: absolute;
+	display: none;
+	border: 1px solid #ffd700;
+	background-color: black;
+	padding: 3px 5px 3px 5px;
+	width: 300px;
+	text-align: left;
+	color: white;
+	z-index:1;
+}
+#cover { /* this will be placed behind the popup to prevent the user from clicking on the menu or other buttons */
+	filter:alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+	position: fixed;
+	position: expression("absolute"); /* position will be absolute only in IE, there is no "fixed" in IE */
+	display: none;
+	border-width: 0px;
+	background-color: black;
+	left: 0px;
+	width: 100%;
+	top: 0px;
+	height: 100%;
+	z-index:2;
+}
+#popup { /* will be placed on top of cover */
+	filter:alpha(opacity=80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+	position: absolute; /* wierd on IE, but this is it ... */
+	display: none;
+	border: 1px solid #ffd700;
+	background-color: black;
+	padding: 10px 15px 10px 15px;
+	text-align: left;
+	color: white;
+	top: 100px;
+	width: 400px;
+	margin-left: -200px; /* half of width  */
+	left: 50%;
+	z-index:3;
+}
+pre {
+	display: inline; /* this will prevent <pre> from putting line breaks before and after  */
+}
+.shipcost {
+	text-align: right;
+	width: 100%;
+}

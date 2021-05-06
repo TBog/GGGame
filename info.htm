@@ -1,0 +1,98 @@
+<html>
+<body>
+<i>Cand zic pe ora, ma refer la faptul ca in fiecare ora unp rogram va rula pe server care va face update la baza de date</i><br>
+<ul>
+<li>Navele<br>
+La urmatoarele se poate face upgrade
+	<ul>
+	<li> fighters
+		<ul>
+		<li>numarul maxim de interceptoare/EWP(electronic warfare pods)
+		<li>fiecare nava are si un numar de fighters curent, dupa fiecare lupta un anumit numar de EWP sunt distruse
+		<li>principalul mod de a face damage
+		<li>tre' sa mamai gandesc la un mod de a face damage
+		</ul>
+	<li> turrets
+		<ul>
+		<li>odata ce EWPurile adversarului au trecut de EWPurile tale, turetele te vor apara
+		<li>nu pot fi distruse in urma luptei / se rapara automat(gratis) dupa lupta
+		</ul>
+	<li> shield
+		<ul>
+		<li>se reincarca pe ora (nu complet), daca nu mai ai shielduri shi ajunge damage la nava, este distrusa
+		<li>ma mai gandesc ce se intampla cu EWPurie dupa ce nava a fost distrusa
+		</ul>
+	<li> shield_regen
+		<ul>
+		<li>valoare 0-255, factor de care tzine regenerarea shieldului pe ora
+		</ul>
+	<li> cargo capacity
+		<ul>
+		<li>cat de multe resurse/colonisti/bombe se pot pune in nava
+		</ul>
+	<li> stealth
+		<ul>
+		<li>sunt 3 tipuri (none/some/stealth) none=inamicul poate vedea ale cui apartine nava / some=inamicul poate vedea cui apartine nava doardaca are detector / stealth=nimeni nu poate afla cui apartine nava
+		<li>mai mai gandesc daca o nava stealth faca ca toata flota (navele care sunt legate de ea) sa fie 'some'
+		</ul>
+	<li> detector
+		<ul>
+		<li>daca nava are sau nu detector (navele cu detector pot afla ci apartzin navele cu stealth 'some')
+		</ul>
+	<li> mine_speed
+		<ul>
+		<li>valoare 0-255, factorul de multiplicare a resurselor minate pe ora
+		</ul>
+	</ul>
+	
+	<br><i>Poate ar trebui sa gasesc shi ceva ce nu poate fi upgraidat, ceva care sa faca anumite nave unice</i>
+	
+<li>Planetele
+	<ul>
+	<li><i>Daca planeta ramane fara fighters shi fara colonishti, cel care ataca o poate captura</i>
+	<li>Colonists
+		<ul>
+		<li>numarul de colonishti de pe o planeta
+		<li>numarul maxim de colonishti 65535 (eventual maresc numarul maxim)
+		<li>poate ma gandesc shi la o marime de planeta care sa influentzeze numarul max de colonishti
+		<li>se pot cumpara colonishti, sau ii pui sa se reproduca, exista un numar de colonishti implicit pe planeta dupa ce o creezi
+		<li>colonishtii platesc taxe shi deci produc bani/credite (aceeashi moneda cu care ii potzi shi cumpara)
+		<li>pot fi omoratzi in cazul unui atac, daca nu mai sunt fighters pe planeta SAU cu bombe
+		</ul>
+	<li>Fighters
+		<ul>
+		<li>se pot face fightere pe planete, colonishtii le fac
+		<li>se pot transfera fightere de pe planeta pe nave shi invers
+		<li>cu cat mai multzi colonishti, cu atat mai multa productzie pe ora
+		<li>ai nevoie de resurse pe planeta pentru a face fightere
+		<li>fighterele apara planeta, nu exista un numar maxim de EWP pe o planeta
+		<li>fighterele de pe planeta pot sa aiba 2 stari: pasive, agresive ... cele agresive ataca automat orice nava care intra in sistemul solar
+		<li>ma mai gandesc ce se intampla daca ataci o planeta din sistemul solar in care cel atacat are 2 sau mai multe planete
+		</ul>
+	<li>Bombs
+		<ul>
+		<li>bombele se pot fabrica pe planeta
+		<li>trebuie sa construieshti o cladire sau ceva ca sa potzi face anumite bombe
+		<li>bombele au un timp de productzie (in ore) in functzie de cladirile construite
+		<li>tot din resursele de pe planeta se construiesc bombele
+		<li>se pot pastra oricate bombe pe planeta
+		</ul>
+	<li>Shield generator
+		<ul>
+		<li>o cladire ce poate fi construita pe planeta
+		<li>nu ajuta in nici un fel la defenceul planetei sau navelor
+		<li>este un fel de rezercor cu shield
+		<li>se poate transfera shield de la generator pe nave (la fel cum se transfera shi fighters)
+		<li>cu cat are lvl mai mare cladirea, cu atat mai mult shield stocat, regen mai mare
+		</ul>
+	<li>Resurse
+		<ul>
+		<li>se pot stoca oricate resurse pe planeta
+		<li>se pot transfera resurse de pe nave pe planeta shi invers
+		<li>se pot vinde resurse pe EARTH (Enormous And Round Terran Homeworld) in sistemul 0
+		<li>se pot cumpara resurse de pe EARTH
+		</ul>
+	</ul>
+</ul>
+</body>
+</html>

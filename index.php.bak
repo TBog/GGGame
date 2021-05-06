@@ -1,0 +1,275 @@
+<?php
+/*if (!isset($_POST['loginsession'])) {
+	include("login.php");
+	die();
+}*/
+require_once ('config.inc.php');
+require_once ('functions.inc.php');
+require_once ('ajax.inc.php');
+require_once ('class.visitorcounter.inc.php');
+
+/*$logged=true;$user='??';
+if (isset($_POST['loginsession'])) $session=$_POST['loginsession'];
+else $logged=false;*/
+$logged=logged_in($session,$user,false);
+
+if (!$logged) {
+	$session=-1;
+/*	include("login.php");
+	die();*/
+} else {
+	//if ($logged===2) redirect2page('http://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['PHP_SELF']), '/\\').'/',array('loginsession'=>$session),'$logged=2');
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><?php echo SERVER_NAME; ?></title>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+<META NAME="KEYWORDS" CONTENT="mmorpg, mmog, web based, browser based, turn game, free, multiplayer, galaxy, game">
+<META NAME="DESCRIPTION" CONTENT="You start out with just one spaceship and turn that into a mighty empire able to defend your colonies">
+<META HTTP-EQUIV="Author" CONTENT="TBog">
+<meta name="verify-v1" content="i+wvfWy4+e71OoiZPTP8GHd5/xGPdyz6EAkYr5u8abw=" />
+<?php
+if ($logged) {
+?>
+<noscript>
+<meta http-equiv="refresh" content="5;URL=noscript.html">
+<h1>This page is not working without javascript</h1>
+<h2>You will be redirected</h2>
+</noscript>
+<?php
+	$xajax->printJavascript();
+?>
+<script type="text/javascript">
+/* <![CDATA[ */
+xajax.callback.global.onRequest = function() {xajax.$('loading').style.display = 'block';}
+xajax.callback.global.beforeResponseProcessing = function() {xajax.$('loading').style.display='none';}
+var lsn="<?php echo $session; ?>";
+var listdisplaymemory=new Object();
+var timer_counter = 0;
+var timer_handle;
+function init()
+{
+	xajax_init(lsn);
+	if (timer_handle)
+		clearInterval(timer_handle);
+	timer_handle = setInterval ( "timer_counter+=1;xajax_update(lsn, timer_counter)", 60 * 1000 );
+}
+function xchg_list_display(string)
+{
+	var e=document.getElementById(string);
+	var b=document.getElementById(string+'button');
+	e.style.display=(b.className=='expand')?'block':'none';
+	b.className=(e.style.display=='block')?'collapse':'expand';
+	listdisplaymemory[string]=e.style.display;
+}
+function show_list_memory()
+{
+	var e;
+	var b;
+	for (var key in listdisplaymemory)
+	{
+		e=document.getElementById(key);
+		b=document.getElementById(key+'button');
+		if ( (!e) || (!b) ) continue;
+		e.style.display=listdisplaymemory[key];
+		b.className=(listdisplaymemory[key]=='block')?'collapse':'expand';
+		//alert("key: "+key+"\r\nvalue: "+listdisplaymemory[key]);
+	}
+}
+var tooltiplocked = false;
+var tooltipvisible = 0; // not visible
+function tooltip(string)
+{
+	if (tooltiplocked)
+		return;
+	var e = document.getElementById('tooltip');
+	if (arguments.length < 1)
+	{
+		e.style.display = 'none';
+		tooltipvisible = 0;
+	} else
+	{
+		tooltipvisible = 2; // on the next position update we will make it visible
+		e.innerHTML = string;
+	}
+}
+function locktooltip(lock)
+{
+	if (arguments.length < 1)
+		tooltiplocked = !tooltiplocked;
+	else
+		tooltiplocked = lock;
+}
+var offsetx = 10;
+var offsety =  5;
+var ie5 = (document.getElementById && document.all); 
+var ns6 = (document.getElementById && !document.all); 
+var ua = navigator.userAgent.toLowerCase();
+var isapple = (ua.indexOf('applewebkit') != -1);
+document.onmousemove = getmouseposition;
+function getmouseposition(e)
+{
+    if (tooltipvisible && !tooltiplocked && document.getElementById)
+    {
+        var iebody=(document.compatMode && document.compatMode != 'BackCompat') ? document.documentElement : document.body;
+        pagex = (isapple?0:(ie5)?iebody.scrollLeft:window.pageXOffset);
+        pagey = (isapple?0:(ie5)?iebody.scrollTop:window.pageYOffset);
+        mousex = (ie5)?event.x:(ns6)?clientX = e.clientX:false;
+        mousey = (ie5)?event.y:(ns6)?clientY = e.clientY:false;
+
+        var ttip = document.getElementById('tooltip');
+        ttip.style.left = (mousex+pagex+offsetx) + 'px';
+        ttip.style.top = (mousey+pagey+offsety) + 'px';
+	
+		var tg = (ie5)?event.srcElement:e.target;
+		tg = tg.nodeName;
+		if ( (tg != 'EM') && (tg != 'S') ) { // if the mouse is not over these, make tooltip invisible
+			ttip.style.display = 'none';
+			tooltipvisible = 0;
+		} else if ( tooltipvisible == 2 ) { // this is the position update that must make the tooltip visible
+			ttip.style.display = 'block';
+			tooltipvisible = 1;
+		}
+    }
+}
+function calculate(value,price,k,total)
+{
+	var e = document.getElementById(k);
+	var t = document.getElementById(total);
+	if (isNaN(parseInt(value))) value = 0;
+	if (isNaN(parseInt(price))) price = 0;
+	value = parseInt(value);
+	value = isNaN(value)?0:value;
+	var oldprice = (isNaN(parseInt(e.innerHTML)))?0:e.innerHTML;
+	var total = (isNaN(parseInt(t.innerHTML)))?0:t.innerHTML;
+	e.innerHTML = value*price;
+	t.innerHTML = total-oldprice+(value*price);
+}
+function popup(text)
+{
+	var c = document.getElementById('cover');
+	var e = document.getElementById('popup');
+	if ((arguments.length<1) || (text.length<1))
+	{
+		c.style.display = 'none';
+		e.style.display = 'none';
+	} else
+	{
+		c.style.display = 'block';
+		//c.style.zIndex="2";
+		e.style.display = 'block';
+		//e.style.zIndex="3";
+		e.innerHTML = text;
+	}
+}
+function numbersonly(e)
+{
+	var key;
+	if (window.event)
+		key = window.event.keyCode;
+	else
+		if (e)
+			key = e.which;
+		else
+			return true;
+	var keychar = String.fromCharCode(key);
+	// control keys
+	if ( (key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==10) || (key==27) )
+		return true;
+	// numbers
+	else
+		if (("0123456789").indexOf(keychar) > -1)
+			return true;
+		else
+			return false;
+}
+function cut2size(field, limit)
+{
+	if (field.value.length >= limit)
+	{
+		field.value = field.value.substring(0, limit);
+		//return false;
+	}
+	//return true;
+}
+function checksizemax(e, field, limit)
+{
+	var key;
+	if (window.event)
+		key = window.event.keyCode;
+	else if (e)
+		key = e.which;
+	else
+		return true;
+	var keychar = String.fromCharCode(key);
+	// control keys
+	if ( (key==null) || (key==0) || (key==8) || (key==9) /*|| (key==13)*/ || (key==27) )
+	{
+		//alert(key+' '+keychar);
+		return true;
+	} else if (field.value.length >= limit)
+	{
+		//alert(key+' '+keychar);
+		return false;
+	}
+	return true;
+}
+function colonists(total) {
+	var idle = document.getElementById('col_idle'); // div
+	var fighters = document.getElementById('col_fighters');
+	var organics = document.getElementById('col_organics');
+	
+	idle.innerHTML = total - fighters.value - organics.value;
+}
+/* ]]> */
+</script>
+<?php
+}
+?>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<?php
+$counter = new VisitorCounter;
+$counter->Visitor();
+if ($logged){
+#if ($_SERVER['REMOTE_ADDR']!="86.104.172.68") die("<body><h1>Game under development ... please wait</h1></body></html>");
+?>
+<body onload="init()" class="gamebody">
+<div id="loading"><img src="img/loading.gif" alt="Loading..." height="100%"></div>
+<div id="page_body">
+<img id="logo" src="./img/ggg.jpg" alt="<?php echo SERVER_NAME; ?>">
+<div id="menu">menu</div>
+<div id="details">details</div>
+<a href="graph.php" target="_blank"><img id='minimap' src="./img/pixel.bmp" alt="Mini Map"></a>
+<div id="menuright"></div>
+</div>
+<?php
+} else {
+?>
+<body class="firstpage">
+<div id="page_body">
+<img id="logo" src="./img/gggbig.jpg" alt="<?php echo SERVER_NAME; ?>"><br>
+<div style="text-align: right">Please <a href="login.php">log in</a> or create a <a href="login.php?a=new">new account</a>.</div>
+<br><i>This is an alpha version ...</i>
+<table class="about">
+<tr><th class="about"><span class="opaque">What is Galaxy Graph Game ?</span></th><th rowspan="2"><img src="./img/ss01.jpg" width="500"></th></tr>
+<tr class="about"><td>
+<p>GGGame is a free, browser-based, space combat multiplayer game.
+<p>You start out with just one spaceship and turn that into a mighty empire able to defend your colonies.
+<p>Create an economic and military infrastructure to support your quest for the next greatest technological achievements.
+<p>Will you terrorize the area around you? Or will you strike fear into the hearts of those who attack the helpless?
+</td></tr>
+</table>
+</div>
+<?php
+}
+?>
+<div id="tooltip" onClick="locktooltip(false);tooltip()"></div>
+<div id="cover"></div>
+<div id="popup"></div>
+<div id="programmer">game written by TBog<div id="visitor_counter" style="margin:auto"><?php echo $counter->show(); ?></div></div>
+</body>
+</html>
